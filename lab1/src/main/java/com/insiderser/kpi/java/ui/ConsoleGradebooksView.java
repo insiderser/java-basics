@@ -16,30 +16,7 @@ public class ConsoleGradebooksView implements GradebooksView {
         boolean exiting = false;
         while (!exiting) {
             var option = chooseOption();
-            switch (option) {
-                case LIST_ALL_STUDENTS:
-                    presenter.onListAllStudents();
-                    break;
-
-                case LIST_EXCELLENT:
-                    presenter.onListExcellentStudents();
-                    break;
-
-                case LIST_EXAMS_FOR_STUDENT:
-                    var student = getStudentFromInput();
-                    if (student != null) {
-                        presenter.onListExamsForStudent(student);
-                    }
-                    break;
-
-                case EXIT:
-                    exiting = true;
-                    break;
-
-                case INVALID:
-                    // Ignored
-                    break;
-            }
+            presenter.onOptionChosen(option);
         }
     }
 
@@ -80,7 +57,8 @@ public class ConsoleGradebooksView implements GradebooksView {
         }
     }
 
-    private Student getStudentFromInput() {
+    @Override
+    public Student getStudentFromUser() {
         var input = new Scanner(System.in);
 
         try {
