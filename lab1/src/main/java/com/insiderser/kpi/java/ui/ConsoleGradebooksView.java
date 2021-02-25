@@ -6,6 +6,7 @@ import com.insiderser.kpi.java.model.Student;
 import com.insiderser.kpi.java.model.StudentGradebook;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class ConsoleGradebooksView implements GradebooksView {
 
@@ -104,8 +105,13 @@ public class ConsoleGradebooksView implements GradebooksView {
         if (gradebooks.isEmpty()) {
             System.out.println("Не знайдено таких студентів");
         } else {
+            System.out.printf("%-25s\t%-7s\t%-5s\t%-20s\t%s\n", "Студент", "Номер", "Курс", "Іспити", "Середній бал");
             for (StudentGradebook gradebook : gradebooks) {
-                System.out.println("    " + gradebook);
+                var exams = gradebook.getExams().stream().map(exam -> exam.getAsText())
+                    .collect(Collectors.joining(", "));
+                System.out.format("%-25s\t%-7s\t%-5s\t%-20s\t%.2f\n",
+                    gradebook.getStudent().getName(), gradebook.getNumber(), gradebook.getCourse(),
+                    exams, gradebook.getMedianGrade());
             }
         }
     }
@@ -121,7 +127,7 @@ public class ConsoleGradebooksView implements GradebooksView {
             System.out.println("Студент не має екзаменів");
         } else {
             for (Exam exam : exams) {
-                System.out.println("    " + exam);
+                System.out.println("    " + exam.getAsText());
             }
         }
     }
