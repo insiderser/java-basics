@@ -2,18 +2,27 @@ package com.insiderser.kpi.java.model;
 
 public class Exam {
 
-    private final String text;
+    private final String name;
+    private final float grade;
 
-    public Exam(String text) {
-        this.text = text;
+    public Exam(String name, float grade) {
+        this.name = name;
+        this.grade = grade;
     }
 
-    public String getAsText() {
-        return text;
+    public String getName() {
+        return name;
+    }
+
+    public float getGrade() {
+        return grade;
     }
 
     @Override
     public String toString() {
-        return getAsText();
+        return "Exam{" +
+            "name='" + name + '\'' +
+            ", grade=" + grade +
+            '}';
     }
 }
