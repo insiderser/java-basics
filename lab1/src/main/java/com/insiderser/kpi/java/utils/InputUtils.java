@@ -4,16 +4,16 @@ import java.util.Scanner;
 
 public class InputUtils {
 
+    private static final Scanner INPUT = new Scanner(System.in);
+
     public static int readInt() {
-        Scanner input = new Scanner(System.in);
-        while (!input.hasNextInt()) {
-            input.next();
+        while (!INPUT.hasNextInt()) {
+            INPUT.next();
         }
-        return input.nextInt();
+        return INPUT.nextInt();
     }
 
     public static String readStudentName() {
-        Scanner input = new Scanner(System.in);
-        return String.format("%s %s %s", input.next(), input.next(), input.next());
+        return String.format("%s %s %s", INPUT.next(), INPUT.next(), INPUT.next());
     }
 }
