@@ -1,0 +1,126 @@
+[
+  {
+    "course": 2,
+    "exams": [
+      {
+        "grade": 5.0,
+        "name": "Node.js"
+      }
+    ],
+    "gradebookNumber": "ІП-9101",
+    "medianGrade": 5.0,
+    "studentName": "Oleksandr Vefew Bezushko"
+  },
+  {
+    "course": 2,
+    "exams": [
+      {
+        "grade": 4.0,
+        "name": "Node.js"
+      }
+    ],
+    "gradebookNumber": "ІП-9102",
+    "medianGrade": 4.0,
+    "studentName": "Second Oojigroi Shrt"
+  },
+  {
+    "course": 2,
+    "exams": [
+      {
+        "grade": 4.2,
+        "name": "Node.js"
+      }
+    ],
+    "gradebookNumber": "ІП-9103",
+    "medianGrade": 4.2,
+    "studentName": "Third Oojigroi Shrt"
+  },
+  {
+    "course": 3,
+    "exams": [
+      {
+        "grade": 4.55,
+        "name": "History"
+      }
+    ],
+    "gradebookNumber": "ІП-8104",
+    "medianGrade": 4.55,
+    "studentName": "Fourth Oojigroi Shrt"
+  },
+  {
+    "course": 1,
+    "exams": [
+      {
+        "grade": 1.0,
+        "name": "Java"
+      },
+      {
+        "grade": 3.2,
+        "name": "Psychology"
+      }
+    ],
+    "gradebookNumber": "ІП-0105",
+    "medianGrade": 2.1,
+    "studentName": "Fifth Oojigroi Shrt"
+  },
+  {
+    "course": 2,
+    "exams": [
+      {
+        "grade": 3.4,
+        "name": "Node.js"
+      }
+    ],
+    "gradebookNumber": "ІП-9106",
+    "medianGrade": 3.4,
+    "studentName": "Sixth Oojigroi Shrt"
+  },
+  {
+    "course": 2,
+    "exams": [
+      {
+        "grade": 4.3,
+        "name": "Node.js"
+      }
+    ],
+    "gradebookNumber": "ІС-9107",
+    "medianGrade": 4.3,
+    "studentName": "Seventh Oojigroi Shrt"
+  },
+  {
+    "course": 2,
+    "exams": [
+      {
+        "grade": 5.0,
+        "name": "Node.js"
+      }
+    ],
+    "gradebookNumber": "ІП-9108",
+    "medianGrade": 5.0,
+    "studentName": "Eighth Oojigroi Shrt"
+  },
+  {
+    "course": 2,
+    "exams": [
+      {
+        "grade": 4.8,
+        "name": "Node.js"
+      }
+    ],
+    "gradebookNumber": "ІП-9109",
+    "medianGrade": 4.8,
+    "studentName": "Ninth Oojigroi Shrt"
+  },
+  {
+    "course": 2,
+    "exams": [
+      {
+        "grade": 4.5,
+        "name": "Node.js"
+      }
+    ],
+    "gradebookNumber": "ІП-9110",
+    "medianGrade": 4.5,
+    "studentName": "Tenth Oojigroi Shrt"
+  }
+]
