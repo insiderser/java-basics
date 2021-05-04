@@ -4,8 +4,12 @@ import com.insiderser.kpi.java.model.StudentGradebook;
 import com.insiderser.kpi.java.utils.FileUtils;
 import com.insiderser.kpi.java.utils.JsonUtils;
 import java.io.IOException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class StudentGradebooksRepository {
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private static final String STUDENTS_FILE_NAME = "student-gradebooks.json";
 
@@ -14,8 +18,12 @@ public class StudentGradebooksRepository {
     private StudentGradebook[] gradebooks;
 
     private StudentGradebooksRepository() throws IOException {
+        LOGGER.trace("Initializing StudentGradebooksRepository...");
+
         String json = FileUtils.readEverythingFromFile(STUDENTS_FILE_NAME);
         gradebooks = JsonUtils.toStudentGradebooks(json);
+
+        LOGGER.trace("Initializing StudentGradebooksRepository success");
     }
 
     /**
@@ -36,6 +44,8 @@ public class StudentGradebooksRepository {
      * @noinspection unused
      */
     public void saveAll(StudentGradebook[] gradebooks) throws IOException {
+        LOGGER.info("Saving {} gradebooks", gradebooks.length);
+
         this.gradebooks = gradebooks;
         FileUtils.writeToFile(STUDENTS_FILE_NAME, gradebooks);
     }

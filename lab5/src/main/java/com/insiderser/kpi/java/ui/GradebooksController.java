@@ -10,8 +10,12 @@ import com.insiderser.kpi.java.model.StudentGradebook;
 import com.insiderser.kpi.java.utils.FileUtils;
 import com.insiderser.kpi.java.utils.InputUtils;
 import java.io.IOException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class GradebooksController {
+
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private static final int OPTION_LIST_ALL_STUDENTS = 1;
     private static final int OPTION_EXCELLENT_STUDENTS = 2;
@@ -25,6 +29,7 @@ public class GradebooksController {
         try {
             loopOptions();
         } catch (Exception e) {
+            LOGGER.error(e);
             System.err.println(e.getMessage());
         }
     }
@@ -33,6 +38,7 @@ public class GradebooksController {
         boolean exiting = false;
         while (!exiting) {
             int chosenOption = chooseOption();
+            LOGGER.info("Chose option {}", chosenOption);
 
             switch (chosenOption) {
                 case OPTION_LIST_ALL_STUDENTS:
@@ -48,6 +54,7 @@ public class GradebooksController {
                     break;
 
                 case OPTION_EXIT:
+                    LOGGER.info("Exiting...");
                     exiting = true;
                     break;
 
@@ -63,6 +70,7 @@ public class GradebooksController {
         try {
             return InputUtils.readInt();
         } catch (InvalidInputException e) {
+            LOGGER.warn("Invalid option entered", e);
             view.showInvalidOptionChosen();
             return OPTION_INVALID;
         }
@@ -70,12 +78,16 @@ public class GradebooksController {
 
     private void onListAllStudents() throws Exception {
         StudentGradebook[] gradebooks = GetAllStudentGradebooks.invoke();
+        LOGGER.debug("Found {} students", gradebooks.length);
+
         view.showStudentGradebooks(gradebooks);
         maybeWriteToFile(gradebooks);
     }
 
     private void onListExcellentStudents() throws Exception {
         StudentGradebook[] excellent = FindExcellentStudents.invoke();
+        LOGGER.debug("Found {} excellent students", excellent.length);
+
         view.showStudentGradebooks(excellent);
         maybeWriteToFile(excellent);
     }
@@ -85,14 +97,19 @@ public class GradebooksController {
 
         try {
             Exam[] exams = FindExamsForStudent.invoke(studentName);
+            LOGGER.debug("Found {} exams for student {}", exams.length, studentName);
+
             view.showStudentExams(exams);
             maybeWriteToFile(exams);
         } catch (StudentNotFoundException e) {
             view.showStudentExamsNotFound();
+            LOGGER.warn("Student {} not found", studentName);
         }
     }
 
     private String getStudentNameFromInput() {
+        LOGGER.debug("Getting student name from input...");
+
         String studentName = null;
         while (studentName == null) {
             view.showEnterStudentNameMessage();
@@ -100,6 +117,7 @@ public class GradebooksController {
             try {
                 studentName = InputUtils.readStudentName();
             } catch (InvalidInputException e) {
+                LOGGER.warn("Invalid student name entered", e);
                 view.showInvalidStudentNameEntered();
             }
         }
@@ -122,6 +140,14 @@ public class GradebooksController {
 
     private String getOutputFilePath() {
         view.showEnterOperationsOutputFile();
-        return InputUtils.readFilePath();
+        String path = InputUtils.readFilePath();
+
+        if (path.isEmpty()) {
+            LOGGER.info("Not outputting to any file because entered file path is empty");
+        } else {
+            LOGGER.info("Outputting data into '{}' file", path);
+        }
+
+        return path;
     }
 }
