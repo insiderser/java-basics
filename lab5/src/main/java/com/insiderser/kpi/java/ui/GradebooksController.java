@@ -3,11 +3,12 @@ package com.insiderser.kpi.java.ui;
 import com.insiderser.kpi.java.domain.FindExamsForStudent;
 import com.insiderser.kpi.java.domain.FindExcellentStudents;
 import com.insiderser.kpi.java.domain.GetAllStudentGradebooks;
+import com.insiderser.kpi.java.domain.SaveExams;
+import com.insiderser.kpi.java.domain.SaveGradebooks;
 import com.insiderser.kpi.java.exceptions.InvalidInputException;
 import com.insiderser.kpi.java.exceptions.StudentNotFoundException;
 import com.insiderser.kpi.java.model.Exam;
 import com.insiderser.kpi.java.model.StudentGradebook;
-import com.insiderser.kpi.java.utils.FileUtils;
 import com.insiderser.kpi.java.utils.InputUtils;
 import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
@@ -127,14 +128,14 @@ public class GradebooksController {
     private void maybeWriteToFile(StudentGradebook[] gradebooks) throws IOException {
         String filePath = getOutputFilePath();
         if (!filePath.isEmpty()) {
-            FileUtils.writeToFile(filePath, gradebooks);
+            SaveGradebooks.invoke(gradebooks, filePath);
         }
     }
 
     private void maybeWriteToFile(Exam[] exams) throws IOException {
         String filePath = getOutputFilePath();
         if (!filePath.isEmpty()) {
-            FileUtils.writeToFile(filePath, exams);
+            SaveExams.invoke(exams, filePath);
         }
     }
 

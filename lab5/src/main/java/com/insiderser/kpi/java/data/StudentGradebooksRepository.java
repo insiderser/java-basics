@@ -47,6 +47,7 @@ public class StudentGradebooksRepository {
         LOGGER.info("Saving {} gradebooks", gradebooks.length);
 
         this.gradebooks = gradebooks;
-        FileUtils.writeToFile(STUDENTS_FILE_NAME, gradebooks);
+        String json = JsonUtils.toJson(gradebooks);
+        FileUtils.writeToFile(STUDENTS_FILE_NAME, json);
     }
 }

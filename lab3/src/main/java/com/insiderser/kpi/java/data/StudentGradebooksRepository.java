@@ -37,6 +37,7 @@ public class StudentGradebooksRepository {
      */
     public void saveAll(StudentGradebook[] gradebooks) throws IOException {
         this.gradebooks = gradebooks;
-        FileUtils.writeToFile(STUDENTS_FILE_NAME, gradebooks);
+        String json = JsonUtils.toJson(gradebooks);
+        FileUtils.writeToFile(STUDENTS_FILE_NAME, json);
     }
 }
