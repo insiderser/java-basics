@@ -60,4 +60,12 @@ public class GradebooksView {
     public void showStudentExamsNotFound() {
         System.out.println("Не знайдено такого студента або він не має екзаменів/заліків");
     }
+
+    public void showDataFileNotFound() {
+        System.err.println("Не знайдено файл з даними!");
+    }
+
+    public void showUnknownError() {
+        System.err.println("Невідома помилка. Повідомте адміністраторів.");
+    }
 }

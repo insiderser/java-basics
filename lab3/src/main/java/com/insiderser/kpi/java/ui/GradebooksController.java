@@ -10,6 +10,7 @@ import com.insiderser.kpi.java.exceptions.StudentNotFoundException;
 import com.insiderser.kpi.java.model.Exam;
 import com.insiderser.kpi.java.model.StudentGradebook;
 import com.insiderser.kpi.java.utils.InputUtils;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class GradebooksController {
@@ -23,37 +24,33 @@ public class GradebooksController {
     private final GradebooksView view = new GradebooksView();
 
     public void run() {
-        try {
-            loopOptions();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    }
-
-    private void loopOptions() throws Exception {
         boolean exiting = false;
         while (!exiting) {
             int chosenOption = chooseOption();
 
-            switch (chosenOption) {
-                case OPTION_LIST_ALL_STUDENTS:
-                    onListAllStudents();
-                    break;
+            try {
+                switch (chosenOption) {
+                    case OPTION_LIST_ALL_STUDENTS:
+                        onListAllStudents();
+                        break;
 
-                case OPTION_EXCELLENT_STUDENTS:
-                    onListExcellentStudents();
-                    break;
+                    case OPTION_EXCELLENT_STUDENTS:
+                        onListExcellentStudents();
+                        break;
 
-                case OPTION_EXAMS_FOR_STUDENT:
-                    onListExamsForStudent();
-                    break;
+                    case OPTION_EXAMS_FOR_STUDENT:
+                        onListExamsForStudent();
+                        break;
 
-                case OPTION_EXIT:
-                    exiting = true;
-                    break;
+                    case OPTION_EXIT:
+                        exiting = true;
+                        break;
 
-                default:
-                    view.showInvalidOptionChosen();
+                    default:
+                        view.showInvalidOptionChosen();
+                }
+            } catch (Exception e) {
+                handleError(e);
             }
         }
     }
@@ -124,5 +121,13 @@ public class GradebooksController {
     private String getOutputFilePath() {
         view.showEnterOperationsOutputFile();
         return InputUtils.readFilePath();
+    }
+
+    private void handleError(Exception e) {
+        if (e instanceof FileNotFoundException) {
+            view.showDataFileNotFound();
+        } else {
+            view.showUnknownError();
+        }
     }
 }
