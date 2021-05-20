@@ -1,12 +1,13 @@
-package com.insiderser.kpi.java.ui;
+package com.insiderser.kpi.java.controller;
 
 import com.insiderser.kpi.java.domain.FindExamsForStudentUseCase;
 import com.insiderser.kpi.java.domain.FindExcellentStudentsUseCase;
 import com.insiderser.kpi.java.domain.GetAllStudentGradebooksUseCase;
 import com.insiderser.kpi.java.domain.SaveExamsUseCase;
 import com.insiderser.kpi.java.domain.SaveGradebooksUseCase;
-import com.insiderser.kpi.java.model.Exam;
-import com.insiderser.kpi.java.model.StudentGradebook;
+import com.insiderser.kpi.java.domain.model.Exam;
+import com.insiderser.kpi.java.domain.model.StudentGradebook;
+import com.insiderser.kpi.java.ui.GradebooksView;
 import com.insiderser.kpi.java.utils.InputUtils;
 import java.io.FileNotFoundException;
 import java.io.IOException;

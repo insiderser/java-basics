@@ -1,6 +1,6 @@
 package com.insiderser.kpi.java.domain;
 
-import com.insiderser.kpi.java.model.Exam;
+import com.insiderser.kpi.java.domain.model.Exam;
 import com.insiderser.kpi.java.utils.FileUtils;
 import com.insiderser.kpi.java.utils.JsonUtils;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.insiderser.kpi.java.model;
+package com.insiderser.kpi.java.domain.model;
 
 public class Exam {
 

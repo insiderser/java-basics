@@ -1,7 +1,7 @@
 package com.insiderser.kpi.java.ui;
 
-import com.insiderser.kpi.java.model.Exam;
-import com.insiderser.kpi.java.model.StudentGradebook;
+import com.insiderser.kpi.java.domain.model.Exam;
+import com.insiderser.kpi.java.domain.model.StudentGradebook;
 import com.insiderser.kpi.java.utils.StringUtils;
 
 public class GradebooksView {

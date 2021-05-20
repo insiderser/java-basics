@@ -1,6 +1,6 @@
-package com.insiderser.kpi.java.data;
+package com.insiderser.kpi.java.domain.data;
 
-import com.insiderser.kpi.java.model.StudentGradebook;
+import com.insiderser.kpi.java.domain.model.StudentGradebook;
 import com.insiderser.kpi.java.utils.FileUtils;
 import com.insiderser.kpi.java.utils.JsonUtils;
 import java.io.IOException;

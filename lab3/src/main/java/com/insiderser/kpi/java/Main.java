@@ -1,6 +1,6 @@
 package com.insiderser.kpi.java;
 
-import com.insiderser.kpi.java.ui.GradebooksController;
+import com.insiderser.kpi.java.controller.GradebooksController;
 
 public class Main {
 

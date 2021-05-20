@@ -1,8 +1,8 @@
 package com.insiderser.kpi.java.domain;
 
-import com.insiderser.kpi.java.data.StudentGradebooksRepository;
-import com.insiderser.kpi.java.model.Exam;
-import com.insiderser.kpi.java.model.StudentGradebook;
+import com.insiderser.kpi.java.domain.data.StudentGradebooksRepository;
+import com.insiderser.kpi.java.domain.model.Exam;
+import com.insiderser.kpi.java.domain.model.StudentGradebook;
 import com.insiderser.kpi.java.utils.ValidationUtils;
 import java.io.IOException;
 import java.util.Objects;

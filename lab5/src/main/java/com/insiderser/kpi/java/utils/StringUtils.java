@@ -1,6 +1,6 @@
 package com.insiderser.kpi.java.utils;
 
-import com.insiderser.kpi.java.model.Exam;
+import com.insiderser.kpi.java.domain.model.Exam;
 
 public class StringUtils {
 
