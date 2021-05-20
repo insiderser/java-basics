@@ -5,9 +5,9 @@ import com.insiderser.kpi.java.utils.FileUtils;
 import com.insiderser.kpi.java.utils.JsonUtils;
 import java.io.IOException;
 
-public class SaveExams {
+public class SaveExamsUseCase {
 
-    public static void invoke(Exam[] exams, String fileName) throws IOException {
+    public void invoke(Exam[] exams, String fileName) throws IOException {
         String json = JsonUtils.toJson(exams);
         FileUtils.writeToFile(fileName, json);
     }

@@ -4,9 +4,9 @@ import com.insiderser.kpi.java.data.StudentGradebooksRepository;
 import com.insiderser.kpi.java.model.StudentGradebook;
 import java.io.IOException;
 
-public class GetAllStudentGradebooks {
+public class GetAllStudentGradebooksUseCase {
 
-    public static StudentGradebook[] invoke() throws IOException {
+    public StudentGradebook[] invoke() throws IOException {
         return StudentGradebooksRepository.getInstance().getAll();
     }
 }

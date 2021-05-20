@@ -1,17 +1,16 @@
 package com.insiderser.kpi.java.ui;
 
-import com.insiderser.kpi.java.domain.FindExamsForStudent;
-import com.insiderser.kpi.java.domain.FindExcellentStudents;
-import com.insiderser.kpi.java.domain.GetAllStudentGradebooks;
-import com.insiderser.kpi.java.domain.SaveExams;
-import com.insiderser.kpi.java.domain.SaveGradebooks;
-import com.insiderser.kpi.java.exceptions.InvalidInputException;
-import com.insiderser.kpi.java.exceptions.StudentNotFoundException;
+import com.insiderser.kpi.java.domain.FindExamsForStudentUseCase;
+import com.insiderser.kpi.java.domain.FindExcellentStudentsUseCase;
+import com.insiderser.kpi.java.domain.GetAllStudentGradebooksUseCase;
+import com.insiderser.kpi.java.domain.SaveExamsUseCase;
+import com.insiderser.kpi.java.domain.SaveGradebooksUseCase;
 import com.insiderser.kpi.java.model.Exam;
 import com.insiderser.kpi.java.model.StudentGradebook;
 import com.insiderser.kpi.java.utils.InputUtils;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.NoSuchElementException;
 
 public class GradebooksController {
 
@@ -22,6 +21,12 @@ public class GradebooksController {
     private static final int OPTION_INVALID = -1;
 
     private final GradebooksView view = new GradebooksView();
+
+    private final GetAllStudentGradebooksUseCase getAllStudents = new GetAllStudentGradebooksUseCase();
+    private final FindExcellentStudentsUseCase findExcellentStudents = new FindExcellentStudentsUseCase();
+    private final FindExamsForStudentUseCase findExamsForStudent = new FindExamsForStudentUseCase();
+    private final SaveGradebooksUseCase saveGradebooks = new SaveGradebooksUseCase();
+    private final SaveExamsUseCase saveExams = new SaveExamsUseCase();
 
     public void run() {
         boolean exiting = false;
@@ -51,6 +56,7 @@ public class GradebooksController {
                 }
             } catch (Exception e) {
                 handleError(e);
+                exiting = true;
             }
         }
     }
@@ -60,61 +66,51 @@ public class GradebooksController {
 
         try {
             return InputUtils.readInt();
-        } catch (InvalidInputException e) {
-            view.showInvalidOptionChosen();
+        } catch (NoSuchElementException e) {
             return OPTION_INVALID;
         }
     }
 
-    private void onListAllStudents() throws Exception {
-        StudentGradebook[] gradebooks = GetAllStudentGradebooks.invoke();
+    private void onListAllStudents() throws IOException {
+        StudentGradebook[] gradebooks = getAllStudents.invoke();
         view.showStudentGradebooks(gradebooks);
         maybeWriteToFile(gradebooks);
     }
 
-    private void onListExcellentStudents() throws Exception {
-        StudentGradebook[] excellent = FindExcellentStudents.invoke();
+    private void onListExcellentStudents() throws IOException {
+        StudentGradebook[] excellent = findExcellentStudents.invoke();
         view.showStudentGradebooks(excellent);
         maybeWriteToFile(excellent);
     }
 
-    private void onListExamsForStudent() throws Exception {
-        String studentName = getStudentNameFromInput();
+    private void onListExamsForStudent() throws IOException {
+        view.showEnterStudentNameMessage();
+        String studentName = InputUtils.readStudentName();
 
-        try {
-            Exam[] exams = FindExamsForStudent.invoke(studentName);
-            view.showStudentExams(exams);
-            maybeWriteToFile(exams);
-        } catch (StudentNotFoundException e) {
-            view.showStudentExamsNotFound();
-        }
-    }
-
-    private String getStudentNameFromInput() {
-        String studentName = null;
-        while (studentName == null) {
-            view.showEnterStudentNameMessage();
-
-            try {
-                studentName = InputUtils.readStudentName();
-            } catch (InvalidInputException e) {
-                view.showInvalidStudentNameEntered();
-            }
-        }
-        return studentName;
+        Exam[] exams = findExamsForStudent.invoke(studentName);
+        view.showStudentExams(exams);
+        maybeWriteToFile(exams);
     }
 
     private void maybeWriteToFile(StudentGradebook[] gradebooks) throws IOException {
+        if (gradebooks.length == 0) {
+            return;
+        }
+
         String filePath = getOutputFilePath();
         if (!filePath.isEmpty()) {
-            SaveGradebooks.invoke(gradebooks, filePath);
+            saveGradebooks.invoke(gradebooks, filePath);
         }
     }
 
     private void maybeWriteToFile(Exam[] exams) throws IOException {
+        if (exams.length == 0) {
+            return;
+        }
+
         String filePath = getOutputFilePath();
         if (!filePath.isEmpty()) {
-            SaveExams.invoke(exams, filePath);
+            saveExams.invoke(exams, filePath);
         }
     }
 

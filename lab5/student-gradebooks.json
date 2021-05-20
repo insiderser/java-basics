@@ -5,10 +5,18 @@
       {
         "grade": 5.0,
         "name": "Node.js"
+      },
+      {
+        "grade": 4.0,
+        "name": "Psychology"
+      },
+      {
+        "grade": 1.0,
+        "name": "Java"
       }
     ],
     "gradebookNumber": "ІП-9101",
-    "medianGrade": 5.0,
+    "medianGrade": 3.3333,
     "studentName": "Oleksandr Vefew Bezushko"
   },
   {
@@ -92,7 +100,7 @@
     "exams": [
       {
         "grade": 5.0,
-        "name": "Node.js"
+        "name": "C++"
       }
     ],
     "gradebookNumber": "ІП-9108",
@@ -104,7 +112,7 @@
     "exams": [
       {
         "grade": 4.8,
-        "name": "Node.js"
+        "name": "Python"
       }
     ],
     "gradebookNumber": "ІП-9109",

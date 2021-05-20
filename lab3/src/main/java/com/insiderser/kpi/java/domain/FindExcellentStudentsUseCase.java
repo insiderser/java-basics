@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FindExcellentStudents {
+public class FindExcellentStudentsUseCase {
 
     private static final float EXCELLENT_GRADE_THRESHOLD = 4.5f;
 
-    public static StudentGradebook[] invoke() throws IOException {
+    public StudentGradebook[] invoke() throws IOException {
         StudentGradebook[] allGradebooks = StudentGradebooksRepository.getInstance().getAll();
         List<StudentGradebook> foundGradebooks = new ArrayList<>();
 
