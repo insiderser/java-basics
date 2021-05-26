@@ -21,7 +21,7 @@ public class FileUtils {
     }
 
     public static void writeToFile(String fileName, CharSequence content) throws IOException {
-        LOGGER.debug("Writing {} to {}", content, fileName);
+        LOGGER.trace("Writing {} to {}", content, fileName);
 
         OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(fileName));
         writer.append(content);
