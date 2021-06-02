@@ -144,7 +144,7 @@ public class GradebooksController {
     }
 
     private void handleError(Exception e) {
-        LOGGER.error(e);
+        LOGGER.fatal(e);
         if (e instanceof FileNotFoundException) {
             view.showDataFileNotFound();
         } else {
